@@ -1,0 +1,1073 @@
+"External issue ID","Summary","Issue Type","Priority","Labels","Description","Test Case ID","Module"
+"SMK-01","SMK-01 — API health endpoint responds","Task","Highest","hostelhub qa smoke p1","h3. API health endpoint responds
+
+*Test case ID:* SMK-01
+*Module:* Platform
+*Type:* Smoke
+*Priority:* P1
+*Severity:* Critical
+
+*Preconditions:*
+Worker deployed
+
+*Steps:*
+# GET /health
+
+*Expected result:*
+200 with {""status"":""ok""}
+
+*Test data:* n/a
+*Automated by:* tests/smoke/critical-paths.spec.js › SMK-01 API health endpoint responds","SMK-01","Platform"
+"SMK-02","SMK-02 — App loads and shows the login screen","Task","Highest","hostelhub qa smoke p1","h3. App loads and shows the login screen
+
+*Test case ID:* SMK-02
+*Module:* Authentication
+*Type:* Smoke
+*Priority:* P1
+*Severity:* Critical
+
+*Preconditions:*
+Web app reachable
+
+*Steps:*
+# Open the web app
+# Wait for the Flutter canvas to render semantics
+
+*Expected result:*
+""Welcome back"", Username and Password fields, Log in button are present
+
+*Test data:* n/a
+*Automated by:* tests/smoke/critical-paths.spec.js › SMK-02 app loads and shows the login screen","SMK-02","Authentication"
+"SMK-03","SMK-03 — Owner signs in and sees the dashboard","Task","Highest","hostelhub qa smoke p1","h3. Owner signs in and sees the dashboard
+
+*Test case ID:* SMK-03
+*Module:* Dashboard
+*Type:* Smoke
+*Priority:* P1
+*Severity:* Critical
+
+*Preconditions:*
+Owner account with a property
+
+*Steps:*
+# Enter valid credentials
+# Tap Log in
+
+*Expected result:*
+Dashboard shows the property name and the KPI cards (Inmates, Occupancy, Rooms, Pending dues)
+
+*Test data:* owner seeded per run
+*Automated by:* tests/smoke/critical-paths.spec.js › SMK-03 owner signs in and sees the dashboard","SMK-03","Dashboard"
+"SMK-04","SMK-04 — All owner tabs are reachable","Task","Highest","hostelhub qa smoke p1","h3. All owner tabs are reachable
+
+*Test case ID:* SMK-04
+*Module:* Navigation
+*Type:* Smoke
+*Priority:* P1
+*Severity:* High
+
+*Preconditions:*
+Owner signed in
+
+*Steps:*
+# Open Inmates
+# Open Polls
+# Return to Home
+
+*Expected result:*
+Every tab renders without the router error page; Home returns to the dashboard
+
+*Test data:* n/a
+*Automated by:* tests/smoke/critical-paths.spec.js › SMK-04 owner tabs are all reachable","SMK-04","Navigation"
+"SMK-05","SMK-05 — Seeded resident is listed on the inmates tab","Task","Highest","hostelhub qa smoke p1","h3. Seeded resident is listed on the inmates tab
+
+*Test case ID:* SMK-05
+*Module:* Inmates
+*Type:* Smoke
+*Priority:* P1
+*Severity:* Critical
+
+*Preconditions:*
+Property with one resident (seeded via API)
+
+*Steps:*
+# Reload the app
+# Open the Inmates tab
+
+*Expected result:*
+The resident name is listed
+
+*Test data:* resident seeded
+*Automated by:* tests/smoke/critical-paths.spec.js › SMK-05 seeded resident is listed on the inmates tab","SMK-05","Inmates"
+"E2E-AUTH-01","E2E-AUTH-01 — Owner signs in with valid credentials","Task","Highest","hostelhub qa e2e p1","h3. Owner signs in with valid credentials
+
+*Test case ID:* E2E-AUTH-01
+*Module:* Authentication
+*Type:* E2E
+*Priority:* P1
+*Severity:* Critical
+
+*Preconditions:*
+Owner account exists
+
+*Steps:*
+# Open the app
+# Enter username and password
+# Tap Log in
+
+*Expected result:*
+User lands on /home and the dashboard renders for their property
+
+*Test data:* owner seeded
+*Automated by:* tests/e2e/auth.spec.js › E2E-AUTH-01 owner signs in with valid credentials","E2E-AUTH-01","Authentication"
+"E2E-AUTH-02","E2E-AUTH-02 — Invalid password keeps the user on the login screen","Task","Highest","hostelhub qa e2e p1","h3. Invalid password keeps the user on the login screen
+
+*Test case ID:* E2E-AUTH-02
+*Module:* Authentication
+*Type:* E2E
+*Priority:* P1
+*Severity:* High
+
+*Preconditions:*
+Valid owner account
+
+*Steps:*
+# Enter a valid username with a wrong password
+# Tap Log in
+
+*Expected result:*
+Error message shown, route stays /login
+
+*Test data:* WrongPass!1
+*Automated by:* tests/e2e/auth.spec.js › E2E-AUTH-02 invalid password keeps the user on the login screen","E2E-AUTH-02","Authentication"
+"E2E-AUTH-03","E2E-AUTH-03 — Sign-up screen opens from login","Task","High","hostelhub qa e2e p2","h3. Sign-up screen opens from login
+
+*Test case ID:* E2E-AUTH-03
+*Module:* Authentication
+*Type:* E2E
+*Priority:* P2
+*Severity:* Medium
+
+*Preconditions:*
+App on the login screen
+
+*Steps:*
+# Tap Sign up
+
+*Expected result:*
+Create-account screen is displayed
+
+*Test data:* n/a
+*Automated by:* tests/e2e/auth.spec.js › E2E-AUTH-03 sign-up screen opens from login","E2E-AUTH-03","Authentication"
+"E2E-AUTH-04","E2E-AUTH-04 — Forgot-password screen opens from login","Task","High","hostelhub qa e2e p2","h3. Forgot-password screen opens from login
+
+*Test case ID:* E2E-AUTH-04
+*Module:* Authentication
+*Type:* E2E
+*Priority:* P2
+*Severity:* Medium
+
+*Preconditions:*
+App on the login screen
+
+*Steps:*
+# Tap Forgot password?
+
+*Expected result:*
+Password reset screen is displayed
+
+*Test data:* n/a
+*Automated by:* tests/e2e/auth.spec.js › E2E-AUTH-04 forgot-password screen opens from login","E2E-AUTH-04","Authentication"
+"E2E-AUTH-05","E2E-AUTH-05 — Protected route redirects to login when signed out","Task","Highest","hostelhub qa e2e p1","h3. Protected route redirects to login when signed out
+
+*Test case ID:* E2E-AUTH-05
+*Module:* Authentication
+*Type:* E2E
+*Priority:* P1
+*Severity:* High
+
+*Preconditions:*
+No active session
+
+*Steps:*
+# Navigate to #/expenses
+
+*Expected result:*
+Router redirects to /login and the login screen renders
+
+*Test data:* n/a
+*Automated by:* tests/e2e/auth.spec.js › E2E-AUTH-05 protected route redirects to login when signed out","E2E-AUTH-05","Authentication"
+"E2E-AUTH-06","E2E-AUTH-06 — Owner can sign out","Task","Highest","hostelhub qa e2e p1","h3. Owner can sign out
+
+*Test case ID:* E2E-AUTH-06
+*Module:* Authentication
+*Type:* E2E
+*Priority:* P1
+*Severity:* High
+
+*Preconditions:*
+Owner signed in
+
+*Steps:*
+# Open More
+# Scroll to the bottom
+# Tap Log out
+
+*Expected result:*
+Session cleared and the login screen is shown
+
+*Test data:* n/a
+*Automated by:* tests/e2e/auth.spec.js › E2E-AUTH-06 owner can sign out","E2E-AUTH-06","Authentication"
+"REG-SES-01","REG-SES-01 — Session survives a page reload","Task","Highest","hostelhub qa regression p1","h3. Session survives a page reload
+
+*Test case ID:* REG-SES-01
+*Module:* Authentication
+*Type:* Regression
+*Priority:* P1
+*Severity:* High
+
+*Preconditions:*
+Owner signed in
+
+*Steps:*
+# Reload the browser
+
+*Expected result:*
+User stays on /home and the dashboard re-renders
+
+*Test data:* n/a
+*Automated by:* tests/regression/session.spec.js › REG-SES-01 session survives a page reload","REG-SES-01","Authentication"
+"REG-SES-02","REG-SES-02 — Empty credentials do not navigate","Task","High","hostelhub qa regression p2","h3. Empty credentials do not navigate
+
+*Test case ID:* REG-SES-02
+*Module:* Authentication
+*Type:* Regression
+*Priority:* P2
+*Severity:* Medium
+
+*Preconditions:*
+App on the login screen
+
+*Steps:*
+# Tap Log in with both fields empty
+
+*Expected result:*
+No navigation; route stays /login
+
+*Test data:* n/a
+*Automated by:* tests/regression/session.spec.js › REG-SES-02 empty credentials do not navigate","REG-SES-02","Authentication"
+"REG-SES-03","REG-SES-03 — Every protected route redirects when signed out","Task","Highest","hostelhub qa regression p1","h3. Every protected route redirects when signed out
+
+*Test case ID:* REG-SES-03
+*Module:* Authentication
+*Type:* Regression
+*Priority:* P1
+*Severity:* High
+
+*Preconditions:*
+No active session
+
+*Steps:*
+# Navigate to expenses, complaints, documents, settings, bills
+
+*Expected result:*
+Each route redirects to /login
+
+*Test data:* n/a
+*Automated by:* tests/regression/session.spec.js › REG-SES-03 every protected route redirects to login when signed out","REG-SES-03","Authentication"
+"REG-SES-04","REG-SES-04 — Logout clears the persisted session","Task","Highest","hostelhub qa regression p1","h3. Logout clears the persisted session
+
+*Test case ID:* REG-SES-04
+*Module:* Authentication
+*Type:* Regression
+*Priority:* P1
+*Severity:* High
+
+*Preconditions:*
+Owner signed in
+
+*Steps:*
+# Log out
+# Reload the page
+
+*Expected result:*
+App returns to the login screen, no session restored
+
+*Test data:* n/a
+*Automated by:* tests/regression/session.spec.js › REG-SES-04 logout clears the session","REG-SES-04","Authentication"
+"E2E-ONB-01","E2E-ONB-01 — New owner sees the setup prompt","Task","Highest","hostelhub qa e2e p1","h3. New owner sees the setup prompt
+
+*Test case ID:* E2E-ONB-01
+*Module:* Onboarding
+*Type:* E2E
+*Priority:* P1
+*Severity:* High
+
+*Preconditions:*
+Owner without a property
+
+*Steps:*
+# Sign in
+
+*Expected result:*
+""Set up your hostel"" prompt with a Get started button
+
+*Test data:* fresh owner
+*Automated by:* tests/e2e/onboarding.spec.js › E2E-ONB-01 new owner sees the setup prompt","E2E-ONB-01","Onboarding"
+"E2E-ONB-02","E2E-ONB-02 — Setup wizard opens from the prompt","Task","Highest","hostelhub qa e2e p1","h3. Setup wizard opens from the prompt
+
+*Test case ID:* E2E-ONB-02
+*Module:* Onboarding
+*Type:* E2E
+*Priority:* P1
+*Severity:* High
+
+*Preconditions:*
+New owner signed in
+
+*Steps:*
+# Tap Get started
+
+*Expected result:*
+Wizard renders its first step without an error page
+
+*Test data:* n/a
+*Automated by:* tests/e2e/onboarding.spec.js › E2E-ONB-02 setup wizard opens from the prompt","E2E-ONB-02","Onboarding"
+"E2E-ONB-03","E2E-ONB-03 — Property and rooms appear on dashboard and inmates tab","Task","Highest","hostelhub qa e2e p1","h3. Property and rooms appear on dashboard and inmates tab
+
+*Test case ID:* E2E-ONB-03
+*Module:* Onboarding
+*Type:* E2E
+*Priority:* P1
+*Severity:* High
+
+*Preconditions:*
+Owner with property + room
+
+*Steps:*
+# Check the dashboard
+# Open Inmates
+
+*Expected result:*
+Property name on both screens; rooms section present
+
+*Test data:* property + room seeded
+*Automated by:* tests/e2e/onboarding.spec.js › E2E-ONB-03 property + rooms appear on the dashboard and inmates tab","E2E-ONB-03","Onboarding"
+"MNL-ONB-01","MNL-ONB-01 — Complete the setup wizard end to end","Task","Highest","hostelhub qa manual p1","h3. Complete the setup wizard end to end
+
+*Test case ID:* MNL-ONB-01
+*Module:* Onboarding
+*Type:* Manual
+*Priority:* P1
+*Severity:* High
+
+*Preconditions:*
+New owner, no property
+
+*Steps:*
+# Tap Get started
+# Fill property name, address, type, rent
+# Add two rooms with capacity
+# Finish
+
+*Expected result:*
+Property + rooms created, dashboard reflects them, data persists after reload
+
+*Test data:* 2 rooms x 2 beds
+*Automated by:* manual check","MNL-ONB-01","Onboarding"
+"E2E-INM-01","E2E-INM-01 — Inmates tab shows property, rooms and residents","Task","Highest","hostelhub qa e2e p1","h3. Inmates tab shows property, rooms and residents
+
+*Test case ID:* E2E-INM-01
+*Module:* Inmates
+*Type:* E2E
+*Priority:* P1
+*Severity:* High
+
+*Preconditions:*
+Property with a room and a resident
+
+*Steps:*
+# Open Inmates
+
+*Expected result:*
+Property name, Rooms section and the resident are listed
+
+*Test data:* resident seeded
+*Automated by:* tests/e2e/inmates.spec.js › E2E-INM-01 inmates tab shows the property, rooms and residents","E2E-INM-01","Inmates"
+"E2E-INM-02","E2E-INM-02 — Owner adds a resident through the form","Task","Highest","hostelhub qa e2e p1","h3. Owner adds a resident through the form
+
+*Test case ID:* E2E-INM-02
+*Module:* Inmates
+*Type:* E2E
+*Priority:* P1
+*Severity:* Critical
+
+*Preconditions:*
+Room with a free bed
+
+*Steps:*
+# Inmates -> Add inmate
+# Select the room chip
+# Fill name, phone, email, bed, rent, due day
+# Tap Add inmate
+
+*Expected result:*
+Resident created, credentials shown, resident listed afterwards
+
+*Test data:* bed 2, rent 7000, due day 10
+*Automated by:* tests/e2e/inmates.spec.js › E2E-INM-02 owner adds a resident through the form","E2E-INM-02","Inmates"
+"E2E-INM-03","E2E-INM-03 — Resident created in the UI exists in the API","Task","Highest","hostelhub qa e2e p1","h3. Resident created in the UI exists in the API
+
+*Test case ID:* E2E-INM-03
+*Module:* Inmates
+*Type:* E2E
+*Priority:* P1
+*Severity:* High
+
+*Preconditions:*
+Room with a free bed
+
+*Steps:*
+# Add a resident through the UI
+# GET /inmates?property_id=...
+
+*Expected result:*
+The API returns the resident with the same room and bed
+
+*Test data:* bed 3
+*Automated by:* tests/e2e/inmates.spec.js › E2E-INM-03 the resident created in the UI exists in the API","E2E-INM-03","Inmates"
+"REG-OCC-01","REG-OCC-01 — Room capacity cannot be exceeded","Task","Highest","hostelhub qa regression p1","h3. Room capacity cannot be exceeded
+
+*Test case ID:* REG-OCC-01
+*Module:* Inmates
+*Type:* Regression
+*Priority:* P1
+*Severity:* High
+
+*Preconditions:*
+Room with capacity 3
+
+*Steps:*
+# Fill the room
+# Attempt a fourth resident
+
+*Expected result:*
+API rejects with a ""room is full"" error
+
+*Test data:* capacity 3
+*Automated by:* tests/regression/occupancy.spec.js › REG-OCC-01 a room cannot exceed its capacity","REG-OCC-01","Inmates"
+"REG-OCC-02","REG-OCC-02 — A bed cannot be assigned twice","Task","Highest","hostelhub qa regression p1","h3. A bed cannot be assigned twice
+
+*Test case ID:* REG-OCC-02
+*Module:* Inmates
+*Type:* Regression
+*Priority:* P1
+*Severity:* High
+
+*Preconditions:*
+Resident on bed 1
+
+*Steps:*
+# Attempt another resident on bed 1
+
+*Expected result:*
+API rejects with ""bed already taken""
+
+*Test data:* bed 1
+*Automated by:* tests/regression/occupancy.spec.js › REG-OCC-02 a bed cannot be assigned twice","REG-OCC-02","Inmates"
+"REG-OCC-03","REG-OCC-03 — Bed number outside the room range is rejected","Task","High","hostelhub qa regression p2","h3. Bed number outside the room range is rejected
+
+*Test case ID:* REG-OCC-03
+*Module:* Inmates
+*Type:* Regression
+*Priority:* P2
+*Severity:* Medium
+
+*Preconditions:*
+Room with capacity 3
+
+*Steps:*
+# Attempt a resident on bed 99
+
+*Expected result:*
+API rejects with ""bed out of range""
+
+*Test data:* bed 99
+*Automated by:* tests/regression/occupancy.spec.js › REG-OCC-03 bed number outside 1..capacity is rejected","REG-OCC-03","Inmates"
+"REG-OCC-04","REG-OCC-04 — API-created resident exposes room and bed","Task","High","hostelhub qa regression p2","h3. API-created resident exposes room and bed
+
+*Test case ID:* REG-OCC-04
+*Module:* Inmates
+*Type:* Regression
+*Priority:* P2
+*Severity:* Medium
+
+*Preconditions:*
+Property with a room
+
+*Steps:*
+# Create a resident via API
+# List residents
+
+*Expected result:*
+Listed with the same room_no, bed_no and rent_amount
+
+*Test data:* n/a
+*Automated by:* tests/regression/occupancy.spec.js › REG-OCC-04 an API-created resident appears with room and bed","REG-OCC-04","Inmates"
+"MNL-INM-02","MNL-INM-02 — Regenerate resident credentials","Task","High","hostelhub qa manual p2","h3. Regenerate resident credentials
+
+*Test case ID:* MNL-INM-02
+*Module:* Inmates
+*Type:* Manual
+*Priority:* P2
+*Severity:* Medium
+
+*Preconditions:*
+Existing resident
+
+*Steps:*
+# Open resident detail
+# Regenerate credentials
+# Sign in as the resident with the new password
+
+*Expected result:*
+New credentials work; the old password no longer does
+
+*Test data:* n/a
+*Automated by:* manual check","MNL-INM-02","Inmates"
+"MNL-RNT-01","MNL-RNT-01 — Record a rent payment and view the receipt","Task","Highest","hostelhub qa manual p1","h3. Record a rent payment and view the receipt
+
+*Test case ID:* MNL-RNT-01
+*Module:* Rent
+*Type:* Manual
+*Priority:* P1
+*Severity:* High
+
+*Preconditions:*
+Resident with rent configured
+
+*Steps:*
+# Open the resident
+# Tap Pay rent
+# Complete the payment
+# Open payment history
+
+*Expected result:*
+Payment recorded, Today's collection increases, receipt available
+
+*Test data:* Rs 6500
+*Automated by:* manual check","MNL-RNT-01","Rent"
+"MNL-RNT-02","MNL-RNT-02 — Generate and share a PDF invoice","Task","High","hostelhub qa manual p2","h3. Generate and share a PDF invoice
+
+*Test case ID:* MNL-RNT-02
+*Module:* Rent
+*Type:* Manual
+*Priority:* P2
+*Severity:* Medium
+
+*Preconditions:*
+Resident with rent and email
+
+*Steps:*
+# Open Bills & invoices
+# Generate the invoice
+# Download/share
+
+*Expected result:*
+PDF contains property, resident, amount and total; share works
+
+*Test data:* n/a
+*Automated by:* manual check","MNL-RNT-02","Rent"
+"E2E-POLL-01","E2E-POLL-01 — Polls tab renders an active poll","Task","Highest","hostelhub qa e2e p1","h3. Polls tab renders an active poll
+
+*Test case ID:* E2E-POLL-01
+*Module:* Polls
+*Type:* E2E
+*Priority:* P1
+*Severity:* High
+
+*Preconditions:*
+Property with a dinner poll
+
+*Steps:*
+# Reload
+# Open Polls
+
+*Expected result:*
+Poll is listed with its meal and options
+
+*Test data:* meal=dinner
+*Automated by:* tests/e2e/polls.spec.js › E2E-POLL-01 polls tab renders an active poll","E2E-POLL-01","Polls"
+"E2E-POLL-02","E2E-POLL-02 — Poll options are an array and recurring is a boolean","Task","High","hostelhub qa e2e p2","h3. Poll options are an array and recurring is a boolean
+
+*Test case ID:* E2E-POLL-02
+*Module:* Polls
+*Type:* E2E
+*Priority:* P2
+*Severity:* Medium
+
+*Preconditions:*
+Poll created
+
+*Steps:*
+# GET /polls?property_id=...
+
+*Expected result:*
+options === [""Yes"",""No""], recurring is true/false
+
+*Test data:* n/a
+*Automated by:* tests/e2e/polls.spec.js › E2E-POLL-02 API returns poll options as an array and recurring as boolean","E2E-POLL-02","Polls"
+"E2E-POLL-03","E2E-POLL-03 — Polls are scoped to their property","Task","High","hostelhub qa e2e p2","h3. Polls are scoped to their property
+
+*Test case ID:* E2E-POLL-03
+*Module:* Polls
+*Type:* E2E
+*Priority:* P2
+*Severity:* Medium
+
+*Preconditions:*
+Two properties
+
+*Steps:*
+# Create a poll
+# List polls for the property
+
+*Expected result:*
+Every returned poll belongs to the requested property
+
+*Test data:* n/a
+*Automated by:* tests/e2e/polls.spec.js › E2E-POLL-03 poll creation is scoped to the property","E2E-POLL-03","Polls"
+"MNL-POLL-01","MNL-POLL-01 — Resident answers a poll and the owner sees the headcount","Task","Highest","hostelhub qa manual p1","h3. Resident answers a poll and the owner sees the headcount
+
+*Test case ID:* MNL-POLL-01
+*Module:* Polls
+*Type:* Manual
+*Priority:* P1
+*Severity:* High
+
+*Preconditions:*
+Open poll, active resident account
+
+*Steps:*
+# Sign in as resident
+# Tap Yes
+# Sign in as owner
+# Open the poll
+
+*Expected result:*
+Headcount increases and the resident is listed as responding
+
+*Test data:* n/a
+*Automated by:* manual check","MNL-POLL-01","Polls"
+"E2E-OPS-01","E2E-OPS-01 — Complaints screen renders","Task","High","hostelhub qa e2e p2","h3. Complaints screen renders
+
+*Test case ID:* E2E-OPS-01
+*Module:* Operations
+*Type:* E2E
+*Priority:* P2
+*Severity:* Medium
+
+*Preconditions:*
+Owner signed in
+
+*Steps:*
+# Open Complaints
+
+*Expected result:*
+Complaints list renders with an empty state or entries
+
+*Test data:* n/a
+*Automated by:* tests/e2e/ops.spec.js › E2E-OPS-01 complaints screen renders","E2E-OPS-01","Operations"
+"E2E-OPS-02","E2E-OPS-02 — Documents screen renders with its upload action","Task","High","hostelhub qa e2e p2","h3. Documents screen renders with its upload action
+
+*Test case ID:* E2E-OPS-02
+*Module:* Operations
+*Type:* E2E
+*Priority:* P2
+*Severity:* Medium
+
+*Preconditions:*
+Owner signed in
+
+*Steps:*
+# Open Documents
+
+*Expected result:*
+Documents screen plus ""Add hostel document""
+
+*Test data:* n/a
+*Automated by:* tests/e2e/ops.spec.js › E2E-OPS-02 documents screen renders with its upload action","E2E-OPS-02","Operations"
+"E2E-OPS-03","E2E-OPS-03 — Expenses screen shows the P&L summary","Task","High","hostelhub qa e2e p2","h3. Expenses screen shows the P&L summary
+
+*Test case ID:* E2E-OPS-03
+*Module:* Operations
+*Type:* E2E
+*Priority:* P2
+*Severity:* Medium
+
+*Preconditions:*
+Owner signed in
+
+*Steps:*
+# Open Expenses
+
+*Expected result:*
+P&L header, income, expenses and net are displayed
+
+*Test data:* n/a
+*Automated by:* tests/e2e/ops.spec.js › E2E-OPS-03 expenses screen shows the P&L summary","E2E-OPS-03","Operations"
+"E2E-OPS-04","E2E-OPS-04 — Visitors, deposits, ratings and SOS render","Task","High","hostelhub qa e2e p2","h3. Visitors, deposits, ratings and SOS render
+
+*Test case ID:* E2E-OPS-04
+*Module:* Operations
+*Type:* E2E
+*Priority:* P2
+*Severity:* Medium
+
+*Preconditions:*
+Owner signed in
+
+*Steps:*
+# Open each screen
+
+*Expected result:*
+Each screen renders its heading with no router error page
+
+*Test data:* n/a
+*Automated by:* tests/e2e/ops.spec.js › E2E-OPS-04 visitors, deposits, ratings and SOS render","E2E-OPS-04","Operations"
+"E2E-OPS-05","E2E-OPS-05 — Settings, bills and chat render","Task","High","hostelhub qa e2e p2","h3. Settings, bills and chat render
+
+*Test case ID:* E2E-OPS-05
+*Module:* Operations
+*Type:* E2E
+*Priority:* P2
+*Severity:* Medium
+
+*Preconditions:*
+Owner signed in
+
+*Steps:*
+# Open each screen
+
+*Expected result:*
+Each screen renders its heading with no router error page
+
+*Test data:* n/a
+*Automated by:* tests/e2e/ops.spec.js › E2E-OPS-05 settings, bills and chat render","E2E-OPS-05","Operations"
+"E2E-OPS-06","E2E-OPS-06 — Adding an expense reaches the P&L endpoint","Task","High","hostelhub qa e2e p2","h3. Adding an expense reaches the P&L endpoint
+
+*Test case ID:* E2E-OPS-06
+*Module:* Operations
+*Type:* E2E
+*Priority:* P2
+*Severity:* Medium
+
+*Preconditions:*
+Owner signed in
+
+*Steps:*
+# Open Expenses
+# Add expense (title, amount)
+# Save
+
+*Expected result:*
+GET /pnl returns income, expense and net as numbers
+
+*Test data:* Electricity 1200
+*Automated by:* tests/e2e/ops.spec.js › E2E-OPS-06 adding an expense reaches the P&L endpoint","E2E-OPS-06","Operations"
+"MNL-OPS-01","MNL-OPS-01 — Raise and resolve a complaint","Task","Highest","hostelhub qa manual p1","h3. Raise and resolve a complaint
+
+*Test case ID:* MNL-OPS-01
+*Module:* Operations
+*Type:* Manual
+*Priority:* P1
+*Severity:* High
+
+*Preconditions:*
+Resident + owner accounts
+
+*Steps:*
+# Resident raises a complaint
+# Owner opens Complaints
+# Move to In progress
+# Resolve with a note
+
+*Expected result:*
+Status open -> in progress -> resolved; resident sees the resolution
+
+*Test data:* category=Plumbing
+*Automated by:* manual check","MNL-OPS-01","Operations"
+"MNL-OPS-02","MNL-OPS-02 — Broadcast a notice to residents","Task","High","hostelhub qa manual p2","h3. Broadcast a notice to residents
+
+*Test case ID:* MNL-OPS-02
+*Module:* Operations
+*Type:* Manual
+*Priority:* P2
+*Severity:* Medium
+
+*Preconditions:*
+Owner + resident accounts
+
+*Steps:*
+# Owner posts a notice
+# Resident opens Notices
+
+*Expected result:*
+Notice appears with title and body
+
+*Test data:* Water supply off 2-4pm
+*Automated by:* manual check","MNL-OPS-02","Operations"
+"REG-API-01","REG-API-01 — /health and /pricing keep their shape","Task","Highest","hostelhub qa regression p1","h3. /health and /pricing keep their shape
+
+*Test case ID:* REG-API-01
+*Module:* API
+*Type:* Regression
+*Priority:* P1
+*Severity:* High
+
+*Preconditions:*
+Worker deployed
+
+*Steps:*
+# GET /health
+# GET /pricing
+
+*Expected result:*
+health is {status:""ok""}; pricing.global has monthly, yearly, extra_property numbers
+
+*Test data:* n/a
+*Automated by:* tests/regression/api.contract.spec.js › REG-API-01","REG-API-01","API"
+"REG-API-02","REG-API-02 — Register and login issue a signed JWT","Task","Highest","hostelhub qa regression p1","h3. Register and login issue a signed JWT
+
+*Test case ID:* REG-API-02
+*Module:* API
+*Type:* Regression
+*Priority:* P1
+*Severity:* Critical
+
+*Preconditions:*
+None
+
+*Steps:*
+# POST /auth/register
+# POST /auth/login
+
+*Expected result:*
+Three-part JWT; user payload never contains the password
+
+*Test data:* new owner
+*Automated by:* tests/regression/api.contract.spec.js › REG-API-02","REG-API-02","API"
+"REG-API-03","REG-API-03 — Wrong password is 401 without echoing the password","Task","Highest","hostelhub qa regression p1","h3. Wrong password is 401 without echoing the password
+
+*Test case ID:* REG-API-03
+*Module:* API
+*Type:* Regression
+*Priority:* P1
+*Severity:* High
+
+*Preconditions:*
+Existing owner
+
+*Steps:*
+# POST /auth/login with a wrong password
+
+*Expected result:*
+401 and the response body does not contain the password
+
+*Test data:* WrongPass!1
+*Automated by:* tests/regression/api.contract.spec.js › REG-API-03","REG-API-03","API"
+"REG-API-04","REG-API-04 — Duplicate username is rejected","Task","High","hostelhub qa regression p2","h3. Duplicate username is rejected
+
+*Test case ID:* REG-API-04
+*Module:* API
+*Type:* Regression
+*Priority:* P2
+*Severity:* Medium
+
+*Preconditions:*
+Existing username
+
+*Steps:*
+# POST /auth/register with the same username
+
+*Expected result:*
+400 or 409 with a clear message
+
+*Test data:* existing username
+*Automated by:* tests/regression/api.contract.spec.js › REG-API-04","REG-API-04","API"
+"REG-API-05","REG-API-05 — Boolean fields are real JSON booleans","Task","Highest","hostelhub qa regression p1","h3. Boolean fields are real JSON booleans
+
+*Test case ID:* REG-API-05
+*Module:* API
+*Type:* Regression
+*Priority:* P1
+*Severity:* High
+
+*Preconditions:*
+Newly registered user
+
+*Steps:*
+# Inspect kyc_verified
+
+*Expected result:*
+true/false (a 0 breaks the Flutter models)
+
+*Test data:* n/a
+*Automated by:* tests/regression/api.contract.spec.js › REG-API-05","REG-API-05","API"
+"REG-API-06","REG-API-06 — Tenants are isolated","Task","Highest","hostelhub qa regression p1","h3. Tenants are isolated
+
+*Test case ID:* REG-API-06
+*Module:* API
+*Type:* Regression
+*Priority:* P1
+*Severity:* Critical
+
+*Preconditions:*
+Two owner accounts
+
+*Steps:*
+# Create a property for each
+# List properties per owner
+
+*Expected result:*
+Each owner sees only their own property
+
+*Test data:* tenant A / B
+*Automated by:* tests/regression/api.contract.spec.js › REG-API-06","REG-API-06","API"
+"MNL-API-01","MNL-API-01 — Worker secrets are configured","Task","Highest","hostelhub qa manual p1","h3. Worker secrets are configured
+
+*Test case ID:* MNL-API-01
+*Module:* API
+*Type:* Manual
+*Priority:* P1
+*Severity:* High
+
+*Preconditions:*
+Wrangler access
+
+*Steps:*
+# Run wrangler secret list
+
+*Expected result:*
+JWT_SECRET and BETTER_AUTH_SECRET present; email key present if mail is live
+
+*Test data:* n/a
+*Automated by:* manual check","MNL-API-01","API"
+"MNL-PLT-01","MNL-PLT-01 — Custom domain serves the app over HTTPS","Task","Highest","hostelhub qa manual p1","h3. Custom domain serves the app over HTTPS
+
+*Test case ID:* MNL-PLT-01
+*Module:* Platform
+*Type:* Manual
+*Priority:* P1
+*Severity:* Critical
+
+*Preconditions:*
+DNS CNAME in place
+
+*Steps:*
+# Open https://hostelhub.mynilam.in
+# Inspect the certificate
+
+*Expected result:*
+200, valid certificate for the hostname, http redirects to https
+
+*Test data:* n/a
+*Automated by:* manual check","MNL-PLT-01","Platform"
+"MNL-PLT-02","MNL-PLT-02 — Deep links work after a hard refresh","Task","High","hostelhub qa manual p2","h3. Deep links work after a hard refresh
+
+*Test case ID:* MNL-PLT-02
+*Module:* Platform
+*Type:* Manual
+*Priority:* P2
+*Severity:* Medium
+
+*Preconditions:*
+Deployed build
+
+*Steps:*
+# Open https://hostelhub.mynilam.in/login in a new tab
+
+*Expected result:*
+SPA fallback serves the app and routes to login
+
+*Test data:* n/a
+*Automated by:* manual check","MNL-PLT-02","Platform"
+"MNL-PLT-03","MNL-PLT-03 — Mobile web layout is usable","Task","High","hostelhub qa manual p2","h3. Mobile web layout is usable
+
+*Test case ID:* MNL-PLT-03
+*Module:* Platform
+*Type:* Manual
+*Priority:* P2
+*Severity:* Medium
+
+*Preconditions:*
+Phone or device emulation
+
+*Steps:*
+# Open the app at 390px width
+# Check dashboard, inmates and forms
+
+*Expected result:*
+Two-column cards, no horizontal overflow, bottom nav reachable
+
+*Test data:* 390x844
+*Automated by:* playwright project chromium-mobile-web (smoke)","MNL-PLT-03","Platform"
+"MOB-AUTH-01","MOB-AUTH-01 — Native app starts on the login screen","Task","Highest","hostelhub qa e2e p1","h3. Native app starts on the login screen
+
+*Test case ID:* MOB-AUTH-01
+*Module:* Mobile
+*Type:* E2E
+*Priority:* P1
+*Severity:* High
+
+*Preconditions:*
+APK installed on a device/emulator
+
+*Steps:*
+# Launch the app
+
+*Expected result:*
+Login screen with Username and Password fields
+
+*Test data:* n/a
+*Automated by:* tests/mobile/auth.mobile.test.js › MOB-AUTH-01","MOB-AUTH-01","Mobile"
+"MOB-AUTH-02","MOB-AUTH-02 — Native app signs in with valid credentials","Task","Highest","hostelhub qa e2e p1","h3. Native app signs in with valid credentials
+
+*Test case ID:* MOB-AUTH-02
+*Module:* Mobile
+*Type:* E2E
+*Priority:* P1
+*Severity:* Critical
+
+*Preconditions:*
+APK installed, owner account
+
+*Steps:*
+# Enter credentials
+# Tap Log in
+
+*Expected result:*
+Dashboard renders with the owner tabs
+
+*Test data:* owner seeded
+*Automated by:* tests/mobile/auth.mobile.test.js › MOB-AUTH-02","MOB-AUTH-02","Mobile"
+"MOB-NAV-01","MOB-NAV-01 — Native shell navigation works","Task","High","hostelhub qa e2e p2","h3. Native shell navigation works
+
+*Test case ID:* MOB-NAV-01
+*Module:* Mobile
+*Type:* E2E
+*Priority:* P2
+*Severity:* Medium
+
+*Preconditions:*
+Signed in on the device
+
+*Steps:*
+# Open Inmates
+# Return to Home
+
+*Expected result:*
+Residents listed, dashboard restored
+
+*Test data:* n/a
+*Automated by:* tests/mobile/navigation.mobile.test.js › MOB-NAV-01","MOB-NAV-01","Mobile"
