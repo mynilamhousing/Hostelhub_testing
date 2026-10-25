@@ -4,16 +4,21 @@
 
 | Layer | Count | Runtime | Runs on |
 | --- | --- | --- | --- |
-| Smoke | 5 | < 1 min | every deploy (CI) |
-| E2E (web) | 20 | ~5 min | every PR to `Noconfig`, nightly |
-| Regression (API + UI) | 14 | ~5 min | nightly + before release |
-| Native (Appium) | 6 | ~4 min | before a store build |
+| Smoke | 5 scenarios | < 1 min (web) | web · Android · iOS — every deploy |
+| E2E | 15 scenarios | ~5 min (web) | web · Android · iOS — every PR |
+| Regression | 10 (API contract + session) | ~4 min | web only |
 | Manual | 10 | — | release sign-off |
 
-Why this shape: the backend is a single Worker over one D1 database, so contract-level tests
-are cheap and catch most breakage (`REG-API-*`). The Flutter UI is canvas-rendered, which makes
-UI tests expensive and occasionally flaky, so they are limited to user journeys that actually
-carry risk — onboarding, resident creation, auth, payments entry points.
+Scenarios are defined once (`src/scenarios/`) and executed by three runners:
+Playwright for web, Appium/UiAutomator2 for the Android emulator, Appium/XCUITest
+for the iOS simulator. Native runs cover smoke + e2e; the API-contract and
+session/routing regression suites are browser/Worker specific and stay on web.
+
+Why this shape: the backend is a single Worker over one D1 database, so
+contract-level tests are cheap and catch most breakage (`REG-API-*`). The Flutter
+UI is canvas-rendered on web and accessibility-driven on native, which makes UI
+tests expensive, so they are limited to journeys that carry risk — onboarding,
+resident creation, auth, polls, ops screens.
 
 ## What we deliberately do *not* test
 
@@ -25,11 +30,11 @@ carry risk — onboarding, resident creation, auth, payments entry points.
 
 | Concern | Owner |
 | --- | --- |
-| Data seeding / teardown | API client (`src/api`) — fast and deterministic |
-| Navigation & rendering | Page objects (`src/pages`) |
-| Business journeys | Flows (`src/flows`) |
-| Cross-cutting wiring | Fixtures (`src/fixtures`) |
-| Flutter-specific quirks | `src/core` only |
+| Data seeding / teardown | `src/fixtures/tenant.js` + `src/api` — fast and deterministic |
+| Platform differences (locators, gestures, lifecycle) | `src/drivers/*` |
+| Screen behaviour | `src/screens/*` (page objects on `UiDriver`) |
+| Test scenarios | `src/scenarios/*` — platform-neutral by rule |
+| Runner wiring | `tests/web/*`, `tests/native/*`, `runners/*` |
 
 ## Environments
 

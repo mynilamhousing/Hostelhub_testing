@@ -17,7 +17,7 @@ Worker deployed
 200 with {""status"":""ok""}
 
 *Test data:* n/a
-*Automated by:* tests/smoke/critical-paths.spec.js › SMK-01 API health endpoint responds","SMK-01","Platform"
+*Automated by:* tests/web/smoke.spec.js › SMK-01 API health endpoint responds","SMK-01","Platform"
 "SMK-02","SMK-02 — App loads and shows the login screen","Task","Highest","hostelhub qa smoke p1","h3. App loads and shows the login screen
 
 *Test case ID:* SMK-02
@@ -37,7 +37,7 @@ Web app reachable
 ""Welcome back"", Username and Password fields, Log in button are present
 
 *Test data:* n/a
-*Automated by:* tests/smoke/critical-paths.spec.js › SMK-02 app loads and shows the login screen","SMK-02","Authentication"
+*Automated by:* tests/web/smoke.spec.js › SMK-02 app loads and shows the login screen","SMK-02","Authentication"
 "SMK-03","SMK-03 — Owner signs in and sees the dashboard","Task","Highest","hostelhub qa smoke p1","h3. Owner signs in and sees the dashboard
 
 *Test case ID:* SMK-03
@@ -57,7 +57,7 @@ Owner account with a property
 Dashboard shows the property name and the KPI cards (Inmates, Occupancy, Rooms, Pending dues)
 
 *Test data:* owner seeded per run
-*Automated by:* tests/smoke/critical-paths.spec.js › SMK-03 owner signs in and sees the dashboard","SMK-03","Dashboard"
+*Automated by:* tests/web/smoke.spec.js › SMK-03 owner signs in and sees the dashboard","SMK-03","Dashboard"
 "SMK-04","SMK-04 — All owner tabs are reachable","Task","Highest","hostelhub qa smoke p1","h3. All owner tabs are reachable
 
 *Test case ID:* SMK-04
@@ -78,7 +78,7 @@ Owner signed in
 Every tab renders without the router error page; Home returns to the dashboard
 
 *Test data:* n/a
-*Automated by:* tests/smoke/critical-paths.spec.js › SMK-04 owner tabs are all reachable","SMK-04","Navigation"
+*Automated by:* tests/web/smoke.spec.js › SMK-04 owner tabs are all reachable","SMK-04","Navigation"
 "SMK-05","SMK-05 — Seeded resident is listed on the inmates tab","Task","Highest","hostelhub qa smoke p1","h3. Seeded resident is listed on the inmates tab
 
 *Test case ID:* SMK-05
@@ -98,7 +98,7 @@ Property with one resident (seeded via API)
 The resident name is listed
 
 *Test data:* resident seeded
-*Automated by:* tests/smoke/critical-paths.spec.js › SMK-05 seeded resident is listed on the inmates tab","SMK-05","Inmates"
+*Automated by:* tests/web/smoke.spec.js › SMK-05 seeded resident is listed on the inmates tab","SMK-05","Inmates"
 "E2E-AUTH-01","E2E-AUTH-01 — Owner signs in with valid credentials","Task","Highest","hostelhub qa e2e p1","h3. Owner signs in with valid credentials
 
 *Test case ID:* E2E-AUTH-01
@@ -119,7 +119,7 @@ Owner account exists
 User lands on /home and the dashboard renders for their property
 
 *Test data:* owner seeded
-*Automated by:* tests/e2e/auth.spec.js › E2E-AUTH-01 owner signs in with valid credentials","E2E-AUTH-01","Authentication"
+*Automated by:* tests/web/auth.spec.js › E2E-AUTH-01 owner signs in with valid credentials","E2E-AUTH-01","Authentication"
 "E2E-AUTH-02","E2E-AUTH-02 — Invalid password keeps the user on the login screen","Task","Highest","hostelhub qa e2e p1","h3. Invalid password keeps the user on the login screen
 
 *Test case ID:* E2E-AUTH-02
@@ -139,7 +139,7 @@ Valid owner account
 Error message shown, route stays /login
 
 *Test data:* WrongPass!1
-*Automated by:* tests/e2e/auth.spec.js › E2E-AUTH-02 invalid password keeps the user on the login screen","E2E-AUTH-02","Authentication"
+*Automated by:* tests/web/auth.spec.js › E2E-AUTH-02 invalid password keeps the user on the login screen","E2E-AUTH-02","Authentication"
 "E2E-AUTH-03","E2E-AUTH-03 — Sign-up screen opens from login","Task","High","hostelhub qa e2e p2","h3. Sign-up screen opens from login
 
 *Test case ID:* E2E-AUTH-03
@@ -158,7 +158,7 @@ App on the login screen
 Create-account screen is displayed
 
 *Test data:* n/a
-*Automated by:* tests/e2e/auth.spec.js › E2E-AUTH-03 sign-up screen opens from login","E2E-AUTH-03","Authentication"
+*Automated by:* tests/web/auth.spec.js › E2E-AUTH-03 sign-up screen opens from login","E2E-AUTH-03","Authentication"
 "E2E-AUTH-04","E2E-AUTH-04 — Forgot-password screen opens from login","Task","High","hostelhub qa e2e p2","h3. Forgot-password screen opens from login
 
 *Test case ID:* E2E-AUTH-04
@@ -177,7 +177,7 @@ App on the login screen
 Password reset screen is displayed
 
 *Test data:* n/a
-*Automated by:* tests/e2e/auth.spec.js › E2E-AUTH-04 forgot-password screen opens from login","E2E-AUTH-04","Authentication"
+*Automated by:* tests/web/auth.spec.js › E2E-AUTH-04 forgot-password screen opens from login","E2E-AUTH-04","Authentication"
 "E2E-AUTH-05","E2E-AUTH-05 — Protected route redirects to login when signed out","Task","Highest","hostelhub qa e2e p1","h3. Protected route redirects to login when signed out
 
 *Test case ID:* E2E-AUTH-05
@@ -196,7 +196,7 @@ No active session
 Router redirects to /login and the login screen renders
 
 *Test data:* n/a
-*Automated by:* tests/e2e/auth.spec.js › E2E-AUTH-05 protected route redirects to login when signed out","E2E-AUTH-05","Authentication"
+*Automated by:* tests/web/auth.spec.js › E2E-AUTH-05 protected route redirects to login when signed out","E2E-AUTH-05","Authentication"
 "E2E-AUTH-06","E2E-AUTH-06 — Owner can sign out","Task","Highest","hostelhub qa e2e p1","h3. Owner can sign out
 
 *Test case ID:* E2E-AUTH-06
@@ -217,7 +217,7 @@ Owner signed in
 Session cleared and the login screen is shown
 
 *Test data:* n/a
-*Automated by:* tests/e2e/auth.spec.js › E2E-AUTH-06 owner can sign out","E2E-AUTH-06","Authentication"
+*Automated by:* tests/web/auth.spec.js › E2E-AUTH-06 owner can sign out","E2E-AUTH-06","Authentication"
 "REG-SES-01","REG-SES-01 — Session survives a page reload","Task","Highest","hostelhub qa regression p1","h3. Session survives a page reload
 
 *Test case ID:* REG-SES-01
@@ -236,7 +236,7 @@ Owner signed in
 User stays on /home and the dashboard re-renders
 
 *Test data:* n/a
-*Automated by:* tests/regression/session.spec.js › REG-SES-01 session survives a page reload","REG-SES-01","Authentication"
+*Automated by:* tests/web/regression.spec.jssession.spec.js › REG-SES-01 session survives a page reload","REG-SES-01","Authentication"
 "REG-SES-02","REG-SES-02 — Empty credentials do not navigate","Task","High","hostelhub qa regression p2","h3. Empty credentials do not navigate
 
 *Test case ID:* REG-SES-02
@@ -255,7 +255,7 @@ App on the login screen
 No navigation; route stays /login
 
 *Test data:* n/a
-*Automated by:* tests/regression/session.spec.js › REG-SES-02 empty credentials do not navigate","REG-SES-02","Authentication"
+*Automated by:* tests/web/regression.spec.jssession.spec.js › REG-SES-02 empty credentials do not navigate","REG-SES-02","Authentication"
 "REG-SES-03","REG-SES-03 — Every protected route redirects when signed out","Task","Highest","hostelhub qa regression p1","h3. Every protected route redirects when signed out
 
 *Test case ID:* REG-SES-03
@@ -274,7 +274,7 @@ No active session
 Each route redirects to /login
 
 *Test data:* n/a
-*Automated by:* tests/regression/session.spec.js › REG-SES-03 every protected route redirects to login when signed out","REG-SES-03","Authentication"
+*Automated by:* tests/web/regression.spec.jssession.spec.js › REG-SES-03 every protected route redirects to login when signed out","REG-SES-03","Authentication"
 "REG-SES-04","REG-SES-04 — Logout clears the persisted session","Task","Highest","hostelhub qa regression p1","h3. Logout clears the persisted session
 
 *Test case ID:* REG-SES-04
@@ -294,7 +294,7 @@ Owner signed in
 App returns to the login screen, no session restored
 
 *Test data:* n/a
-*Automated by:* tests/regression/session.spec.js › REG-SES-04 logout clears the session","REG-SES-04","Authentication"
+*Automated by:* tests/web/regression.spec.jssession.spec.js › REG-SES-04 logout clears the session","REG-SES-04","Authentication"
 "E2E-ONB-01","E2E-ONB-01 — New owner sees the setup prompt","Task","Highest","hostelhub qa e2e p1","h3. New owner sees the setup prompt
 
 *Test case ID:* E2E-ONB-01
@@ -313,7 +313,7 @@ Owner without a property
 ""Set up your hostel"" prompt with a Get started button
 
 *Test data:* fresh owner
-*Automated by:* tests/e2e/onboarding.spec.js › E2E-ONB-01 new owner sees the setup prompt","E2E-ONB-01","Onboarding"
+*Automated by:* tests/web/onboarding.spec.js › E2E-ONB-01 new owner sees the setup prompt","E2E-ONB-01","Onboarding"
 "E2E-ONB-02","E2E-ONB-02 — Setup wizard opens from the prompt","Task","Highest","hostelhub qa e2e p1","h3. Setup wizard opens from the prompt
 
 *Test case ID:* E2E-ONB-02
@@ -332,7 +332,7 @@ New owner signed in
 Wizard renders its first step without an error page
 
 *Test data:* n/a
-*Automated by:* tests/e2e/onboarding.spec.js › E2E-ONB-02 setup wizard opens from the prompt","E2E-ONB-02","Onboarding"
+*Automated by:* tests/web/onboarding.spec.js › E2E-ONB-02 setup wizard opens from the prompt","E2E-ONB-02","Onboarding"
 "E2E-ONB-03","E2E-ONB-03 — Property and rooms appear on dashboard and inmates tab","Task","Highest","hostelhub qa e2e p1","h3. Property and rooms appear on dashboard and inmates tab
 
 *Test case ID:* E2E-ONB-03
@@ -352,7 +352,7 @@ Owner with property + room
 Property name on both screens; rooms section present
 
 *Test data:* property + room seeded
-*Automated by:* tests/e2e/onboarding.spec.js › E2E-ONB-03 property + rooms appear on the dashboard and inmates tab","E2E-ONB-03","Onboarding"
+*Automated by:* tests/web/onboarding.spec.js › E2E-ONB-03 property + rooms appear on the dashboard and inmates tab","E2E-ONB-03","Onboarding"
 "MNL-ONB-01","MNL-ONB-01 — Complete the setup wizard end to end","Task","Highest","hostelhub qa manual p1","h3. Complete the setup wizard end to end
 
 *Test case ID:* MNL-ONB-01
@@ -393,7 +393,7 @@ Property with a room and a resident
 Property name, Rooms section and the resident are listed
 
 *Test data:* resident seeded
-*Automated by:* tests/e2e/inmates.spec.js › E2E-INM-01 inmates tab shows the property, rooms and residents","E2E-INM-01","Inmates"
+*Automated by:* tests/web/inmates.spec.js › E2E-INM-01 inmates tab shows the property, rooms and residents","E2E-INM-01","Inmates"
 "E2E-INM-02","E2E-INM-02 — Owner adds a resident through the form","Task","Highest","hostelhub qa e2e p1","h3. Owner adds a resident through the form
 
 *Test case ID:* E2E-INM-02
@@ -415,7 +415,7 @@ Room with a free bed
 Resident created, credentials shown, resident listed afterwards
 
 *Test data:* bed 2, rent 7000, due day 10
-*Automated by:* tests/e2e/inmates.spec.js › E2E-INM-02 owner adds a resident through the form","E2E-INM-02","Inmates"
+*Automated by:* tests/web/inmates.spec.js › E2E-INM-02 owner adds a resident through the form","E2E-INM-02","Inmates"
 "E2E-INM-03","E2E-INM-03 — Resident created in the UI exists in the API","Task","Highest","hostelhub qa e2e p1","h3. Resident created in the UI exists in the API
 
 *Test case ID:* E2E-INM-03
@@ -435,7 +435,7 @@ Room with a free bed
 The API returns the resident with the same room and bed
 
 *Test data:* bed 3
-*Automated by:* tests/e2e/inmates.spec.js › E2E-INM-03 the resident created in the UI exists in the API","E2E-INM-03","Inmates"
+*Automated by:* tests/web/inmates.spec.js › E2E-INM-03 the resident created in the UI exists in the API","E2E-INM-03","Inmates"
 "REG-OCC-01","REG-OCC-01 — Room capacity cannot be exceeded","Task","Highest","hostelhub qa regression p1","h3. Room capacity cannot be exceeded
 
 *Test case ID:* REG-OCC-01
@@ -455,7 +455,7 @@ Room with capacity 3
 API rejects with a ""room is full"" error
 
 *Test data:* capacity 3
-*Automated by:* tests/regression/occupancy.spec.js › REG-OCC-01 a room cannot exceed its capacity","REG-OCC-01","Inmates"
+*Automated by:* tests/web/regression.spec.jsoccupancy.spec.js › REG-OCC-01 a room cannot exceed its capacity","REG-OCC-01","Inmates"
 "REG-OCC-02","REG-OCC-02 — A bed cannot be assigned twice","Task","Highest","hostelhub qa regression p1","h3. A bed cannot be assigned twice
 
 *Test case ID:* REG-OCC-02
@@ -474,7 +474,7 @@ Resident on bed 1
 API rejects with ""bed already taken""
 
 *Test data:* bed 1
-*Automated by:* tests/regression/occupancy.spec.js › REG-OCC-02 a bed cannot be assigned twice","REG-OCC-02","Inmates"
+*Automated by:* tests/web/regression.spec.jsoccupancy.spec.js › REG-OCC-02 a bed cannot be assigned twice","REG-OCC-02","Inmates"
 "REG-OCC-03","REG-OCC-03 — Bed number outside the room range is rejected","Task","High","hostelhub qa regression p2","h3. Bed number outside the room range is rejected
 
 *Test case ID:* REG-OCC-03
@@ -493,7 +493,7 @@ Room with capacity 3
 API rejects with ""bed out of range""
 
 *Test data:* bed 99
-*Automated by:* tests/regression/occupancy.spec.js › REG-OCC-03 bed number outside 1..capacity is rejected","REG-OCC-03","Inmates"
+*Automated by:* tests/web/regression.spec.jsoccupancy.spec.js › REG-OCC-03 bed number outside 1..capacity is rejected","REG-OCC-03","Inmates"
 "REG-OCC-04","REG-OCC-04 — API-created resident exposes room and bed","Task","High","hostelhub qa regression p2","h3. API-created resident exposes room and bed
 
 *Test case ID:* REG-OCC-04
@@ -513,7 +513,7 @@ Property with a room
 Listed with the same room_no, bed_no and rent_amount
 
 *Test data:* n/a
-*Automated by:* tests/regression/occupancy.spec.js › REG-OCC-04 an API-created resident appears with room and bed","REG-OCC-04","Inmates"
+*Automated by:* tests/web/regression.spec.jsoccupancy.spec.js › REG-OCC-04 an API-created resident appears with room and bed","REG-OCC-04","Inmates"
 "MNL-INM-02","MNL-INM-02 — Regenerate resident credentials","Task","High","hostelhub qa manual p2","h3. Regenerate resident credentials
 
 *Test case ID:* MNL-INM-02
@@ -597,7 +597,7 @@ Property with a dinner poll
 Poll is listed with its meal and options
 
 *Test data:* meal=dinner
-*Automated by:* tests/e2e/polls.spec.js › E2E-POLL-01 polls tab renders an active poll","E2E-POLL-01","Polls"
+*Automated by:* tests/web/polls.spec.js › E2E-POLL-01 polls tab renders an active poll","E2E-POLL-01","Polls"
 "E2E-POLL-02","E2E-POLL-02 — Poll options are an array and recurring is a boolean","Task","High","hostelhub qa e2e p2","h3. Poll options are an array and recurring is a boolean
 
 *Test case ID:* E2E-POLL-02
@@ -616,7 +616,7 @@ Poll created
 options === [""Yes"",""No""], recurring is true/false
 
 *Test data:* n/a
-*Automated by:* tests/e2e/polls.spec.js › E2E-POLL-02 API returns poll options as an array and recurring as boolean","E2E-POLL-02","Polls"
+*Automated by:* tests/web/polls.spec.js › E2E-POLL-02 API returns poll options as an array and recurring as boolean","E2E-POLL-02","Polls"
 "E2E-POLL-03","E2E-POLL-03 — Polls are scoped to their property","Task","High","hostelhub qa e2e p2","h3. Polls are scoped to their property
 
 *Test case ID:* E2E-POLL-03
@@ -636,7 +636,7 @@ Two properties
 Every returned poll belongs to the requested property
 
 *Test data:* n/a
-*Automated by:* tests/e2e/polls.spec.js › E2E-POLL-03 poll creation is scoped to the property","E2E-POLL-03","Polls"
+*Automated by:* tests/web/polls.spec.js › E2E-POLL-03 poll creation is scoped to the property","E2E-POLL-03","Polls"
 "MNL-POLL-01","MNL-POLL-01 — Resident answers a poll and the owner sees the headcount","Task","Highest","hostelhub qa manual p1","h3. Resident answers a poll and the owner sees the headcount
 
 *Test case ID:* MNL-POLL-01
@@ -677,7 +677,7 @@ Owner signed in
 Complaints list renders with an empty state or entries
 
 *Test data:* n/a
-*Automated by:* tests/e2e/ops.spec.js › E2E-OPS-01 complaints screen renders","E2E-OPS-01","Operations"
+*Automated by:* tests/web/ops.spec.js › E2E-OPS-01 complaints screen renders","E2E-OPS-01","Operations"
 "E2E-OPS-02","E2E-OPS-02 — Documents screen renders with its upload action","Task","High","hostelhub qa e2e p2","h3. Documents screen renders with its upload action
 
 *Test case ID:* E2E-OPS-02
@@ -696,7 +696,7 @@ Owner signed in
 Documents screen plus ""Add hostel document""
 
 *Test data:* n/a
-*Automated by:* tests/e2e/ops.spec.js › E2E-OPS-02 documents screen renders with its upload action","E2E-OPS-02","Operations"
+*Automated by:* tests/web/ops.spec.js › E2E-OPS-02 documents screen renders with its upload action","E2E-OPS-02","Operations"
 "E2E-OPS-03","E2E-OPS-03 — Expenses screen shows the P&L summary","Task","High","hostelhub qa e2e p2","h3. Expenses screen shows the P&L summary
 
 *Test case ID:* E2E-OPS-03
@@ -715,7 +715,7 @@ Owner signed in
 P&L header, income, expenses and net are displayed
 
 *Test data:* n/a
-*Automated by:* tests/e2e/ops.spec.js › E2E-OPS-03 expenses screen shows the P&L summary","E2E-OPS-03","Operations"
+*Automated by:* tests/web/ops.spec.js › E2E-OPS-03 expenses screen shows the P&L summary","E2E-OPS-03","Operations"
 "E2E-OPS-04","E2E-OPS-04 — Visitors, deposits, ratings and SOS render","Task","High","hostelhub qa e2e p2","h3. Visitors, deposits, ratings and SOS render
 
 *Test case ID:* E2E-OPS-04
@@ -734,7 +734,7 @@ Owner signed in
 Each screen renders its heading with no router error page
 
 *Test data:* n/a
-*Automated by:* tests/e2e/ops.spec.js › E2E-OPS-04 visitors, deposits, ratings and SOS render","E2E-OPS-04","Operations"
+*Automated by:* tests/web/ops.spec.js › E2E-OPS-04 visitors, deposits, ratings and SOS render","E2E-OPS-04","Operations"
 "E2E-OPS-05","E2E-OPS-05 — Settings, bills and chat render","Task","High","hostelhub qa e2e p2","h3. Settings, bills and chat render
 
 *Test case ID:* E2E-OPS-05
@@ -753,7 +753,7 @@ Owner signed in
 Each screen renders its heading with no router error page
 
 *Test data:* n/a
-*Automated by:* tests/e2e/ops.spec.js › E2E-OPS-05 settings, bills and chat render","E2E-OPS-05","Operations"
+*Automated by:* tests/web/ops.spec.js › E2E-OPS-05 settings, bills and chat render","E2E-OPS-05","Operations"
 "E2E-OPS-06","E2E-OPS-06 — Adding an expense reaches the P&L endpoint","Task","High","hostelhub qa e2e p2","h3. Adding an expense reaches the P&L endpoint
 
 *Test case ID:* E2E-OPS-06
@@ -774,7 +774,7 @@ Owner signed in
 GET /pnl returns income, expense and net as numbers
 
 *Test data:* Electricity 1200
-*Automated by:* tests/e2e/ops.spec.js › E2E-OPS-06 adding an expense reaches the P&L endpoint","E2E-OPS-06","Operations"
+*Automated by:* tests/web/ops.spec.js › E2E-OPS-06 adding an expense reaches the P&L endpoint","E2E-OPS-06","Operations"
 "MNL-OPS-01","MNL-OPS-01 — Raise and resolve a complaint","Task","Highest","hostelhub qa manual p1","h3. Raise and resolve a complaint
 
 *Test case ID:* MNL-OPS-01
@@ -836,7 +836,7 @@ Worker deployed
 health is {status:""ok""}; pricing.global has monthly, yearly, extra_property numbers
 
 *Test data:* n/a
-*Automated by:* tests/regression/api.contract.spec.js › REG-API-01","REG-API-01","API"
+*Automated by:* tests/web/regression.spec.jsapi.contract.spec.js › REG-API-01","REG-API-01","API"
 "REG-API-02","REG-API-02 — Register and login issue a signed JWT","Task","Highest","hostelhub qa regression p1","h3. Register and login issue a signed JWT
 
 *Test case ID:* REG-API-02
@@ -856,7 +856,7 @@ None
 Three-part JWT; user payload never contains the password
 
 *Test data:* new owner
-*Automated by:* tests/regression/api.contract.spec.js › REG-API-02","REG-API-02","API"
+*Automated by:* tests/web/regression.spec.jsapi.contract.spec.js › REG-API-02","REG-API-02","API"
 "REG-API-03","REG-API-03 — Wrong password is 401 without echoing the password","Task","Highest","hostelhub qa regression p1","h3. Wrong password is 401 without echoing the password
 
 *Test case ID:* REG-API-03
@@ -875,7 +875,7 @@ Existing owner
 401 and the response body does not contain the password
 
 *Test data:* WrongPass!1
-*Automated by:* tests/regression/api.contract.spec.js › REG-API-03","REG-API-03","API"
+*Automated by:* tests/web/regression.spec.jsapi.contract.spec.js › REG-API-03","REG-API-03","API"
 "REG-API-04","REG-API-04 — Duplicate username is rejected","Task","High","hostelhub qa regression p2","h3. Duplicate username is rejected
 
 *Test case ID:* REG-API-04
@@ -894,7 +894,7 @@ Existing username
 400 or 409 with a clear message
 
 *Test data:* existing username
-*Automated by:* tests/regression/api.contract.spec.js › REG-API-04","REG-API-04","API"
+*Automated by:* tests/web/regression.spec.jsapi.contract.spec.js › REG-API-04","REG-API-04","API"
 "REG-API-05","REG-API-05 — Boolean fields are real JSON booleans","Task","Highest","hostelhub qa regression p1","h3. Boolean fields are real JSON booleans
 
 *Test case ID:* REG-API-05
@@ -913,7 +913,7 @@ Newly registered user
 true/false (a 0 breaks the Flutter models)
 
 *Test data:* n/a
-*Automated by:* tests/regression/api.contract.spec.js › REG-API-05","REG-API-05","API"
+*Automated by:* tests/web/regression.spec.jsapi.contract.spec.js › REG-API-05","REG-API-05","API"
 "REG-API-06","REG-API-06 — Tenants are isolated","Task","Highest","hostelhub qa regression p1","h3. Tenants are isolated
 
 *Test case ID:* REG-API-06
@@ -933,7 +933,7 @@ Two owner accounts
 Each owner sees only their own property
 
 *Test data:* tenant A / B
-*Automated by:* tests/regression/api.contract.spec.js › REG-API-06","REG-API-06","API"
+*Automated by:* tests/web/regression.spec.jsapi.contract.spec.js › REG-API-06","REG-API-06","API"
 "MNL-API-01","MNL-API-01 — Worker secrets are configured","Task","Highest","hostelhub qa manual p1","h3. Worker secrets are configured
 
 *Test case ID:* MNL-API-01
@@ -1030,7 +1030,7 @@ APK installed on a device/emulator
 Login screen with Username and Password fields
 
 *Test data:* n/a
-*Automated by:* tests/mobile/auth.mobile.test.js › MOB-AUTH-01","MOB-AUTH-01","Mobile"
+*Automated by:* tests/native/auth.mobile.test.js › MOB-AUTH-01","MOB-AUTH-01","Mobile"
 "MOB-AUTH-02","MOB-AUTH-02 — Native app signs in with valid credentials","Task","Highest","hostelhub qa e2e p1","h3. Native app signs in with valid credentials
 
 *Test case ID:* MOB-AUTH-02
@@ -1050,7 +1050,7 @@ APK installed, owner account
 Dashboard renders with the owner tabs
 
 *Test data:* owner seeded
-*Automated by:* tests/mobile/auth.mobile.test.js › MOB-AUTH-02","MOB-AUTH-02","Mobile"
+*Automated by:* tests/native/auth.mobile.test.js › MOB-AUTH-02","MOB-AUTH-02","Mobile"
 "MOB-NAV-01","MOB-NAV-01 — Native shell navigation works","Task","High","hostelhub qa e2e p2","h3. Native shell navigation works
 
 *Test case ID:* MOB-NAV-01
@@ -1070,4 +1070,4 @@ Signed in on the device
 Residents listed, dashboard restored
 
 *Test data:* n/a
-*Automated by:* tests/mobile/navigation.mobile.test.js › MOB-NAV-01","MOB-NAV-01","Mobile"
+*Automated by:* tests/native/navigation.mobile.test.js › MOB-NAV-01","MOB-NAV-01","Mobile"

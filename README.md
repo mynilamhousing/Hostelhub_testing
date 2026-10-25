@@ -7,44 +7,54 @@ Everything in here is **test only**. The application lives in `AanandAB/Hostelhu
 
 | Layer | Tool | Target |
 | --- | --- | --- |
-| Web (desktop + mobile browser) | Playwright + JavaScript | https://hostelhub.mynilam.in |
-| Native Android / iOS | WebdriverIO + Appium | the Flutter release build |
+| Web (desktop + mobile browser) | Playwright | https://hostelhub.mynilam.in |
+| Android emulator / device | WebdriverIO + Appium (UiAutomator2) | the Flutter release APK |
+| iOS simulator / device | WebdriverIO + Appium (XCUITest) | the Flutter iOS build |
 | API | Playwright request layer | https://hostelhub.mynilamhousing.workers.dev |
 
-## Architecture — Page Object Model
+**One scenario source, three runners.** Scenarios in `src/scenarios/` are written
+once against a `UiDriver` contract; the web runner supplies Playwright, the two
+native runners supply Appium. Smoke and e2e run on all three platforms — see
+[`docs/PLATFORMS.md`](docs/PLATFORMS.md) for the full matrix and emulator setup.
+
+## Architecture — Page Object Model + driver adapters
 
 ```
 src/
-├── config/      env.js (targets, timeouts) · constants.js (routes, tabs, labels, text)
-├── core/        flutter.driver.js · base.page.js           ← infrastructure
-├── api/         hostelhub.api.js · endpoints.js            ← data setup & contract checks
-├── components/  bottom-nav · dialog                        ← shared UI, not tied to a route
-├── pages/       login · register · forgot-password ·
-│                dashboard · inmates · add-inmate ·
-│                polls · more · ops                         ← one class per screen
-├── flows/       journeys.js (AuthFlow, InmateFlow)         ← business journeys
-└── fixtures/    index.js (DI) · data.factory.js            ← test wiring & unique data
+├── config/      env.js · constants.js · platforms.js        targets, routes, platform matrix
+├── drivers/     ui.driver.js (contract)
+│                playwright.driver.js · appium.driver.js    platform adapters
+├── screens/     login · dashboard · inmates · add-inmate ·
+│                polls · more · ops                          one class per screen
+├── scenarios/   smoke.scenarios.js · e2e.scenarios.js      written once, run everywhere
+├── api/         hostelhub.api.js · endpoints.js            data setup + contract checks
+├── fixtures/    tenant.js · data.factory.js                isolated tenant per scenario
+└── support/     harness.js · assert.js                     runner-neutral glue
 tests/
-├── smoke/       deploy gate — 5 checks, < 1 min
-├── e2e/         feature journeys (auth, onboarding, inmates, polls, ops)
-├── regression/  API contract, occupancy rules, session & routing
-└── mobile/      Appium specs (*.mobile.test.js)
+├── web/         smoke.spec.js · e2e.spec.js · regression.spec.js   (Playwright)
+└── native/      smoke.mobile.test.js · e2e.mobile.test.js          (WDIO/Mocha)
+runners/
+├── playwright.config.js
+├── wdio.shared.js
+├── wdio.android.conf.js
+└── wdio.ios.conf.js
 scripts/         test-case catalogue + generator + cleanup SQL
-docs/            generated Excel / CSV / Markdown, test strategy
+docs/            PLATFORMS · TEST-STRATEGY · generated Excel/CSV/Markdown
 ```
 
 **Layering rules**
 
-1. `tests/**` contain no selectors and no waits — they compose pages and flows.
-2. A page object owns the selectors for one screen and exposes intent (`login()`, `addInmate()`).
-3. A flow chains pages into a business process (`AuthFlow.signIn`, `InmateFlow.addResident`).
-4. Components (`BottomNav`, `DialogComponent`) are shared by many pages.
-5. `src/core/base.page.js` is the only place with the Flutter quirks (click-before-type,
-   semantics bootstrap, lazy-list scrolling).
-6. Fixtures inject everything a test needs and seed an isolated tenant per test.
-
-Result: a UI change touches one page object; a process change touches one flow; a test only
-ever describes expected behaviour.
+1. `tests/**` are thin harnesses — they only bind a driver to the scenario list.
+2. `src/scenarios/**` describe behaviour and must stay platform-neutral: no
+   selectors, no waits, no `if (platform === …)`.
+3. `src/screens/**` are page objects on top of `UiDriver` (`login()`,
+   `openAddInmate()`, `expectInmate()`).
+4. `src/drivers/**` is the only place that knows Playwright or WebdriverIO —
+   including the Flutter-web semantics bootstrap and the click-before-type quirk.
+5. `src/fixtures/tenant.js` provisions an isolated owner/property/room through
+   the API, identically on every platform.
+6. `src/support/harness.js` calls `driver.reset()` then `prepare()` then `run()`,
+   so every scenario starts signed out with fresh data.
 
 ## Setup
 
@@ -54,24 +64,45 @@ npx playwright install chromium
 cp .env.example .env
 ```
 
+## Runner status
+
+| Target | State |
+| --- | --- |
+| Web (Playwright) | **30/30 passing** against production — 5 smoke, 15 e2e, 10 regression |
+| Android (Appium) | runner reaches an UiAutomator2 session; needs `ANDROID_HOME` + a booted AVD |
+| iOS (Appium) | runner reaches an XCUITest session; needs macOS + Xcode + the `.app` bundle |
+
 ## Running
 
 ```bash
-npm run test:smoke          # deploy gate (~1 min)
-npm run test:e2e            # feature journeys
-npm run test:regression     # deep regression (API contract, occupancy, session)
-npm test                    # all of the above
-npm run test:mobile-web     # smoke suite on a Pixel 7 viewport
-npm run test:mobile         # Appium suite (needs emulator + APK)
-npm run report              # open the last HTML report
+# Web
+npm run test:web:smoke          # deploy gate (~1 min)
+npm run test:web:e2e
+npm run test:web:regression     # API contract + session/routing (web only)
+npm run test:web:all
+npm run test:web:mobile         # smoke on a Pixel 7 viewport
+
+# Android emulator
+npm run test:android:smoke
+npm run test:android:e2e
+npm run test:android:all
+
+# iOS simulator (macOS)
+npm run test:ios:smoke
+npm run test:ios:e2e
+npm run test:ios:all
+
+# Both CI-capable targets
+npm run test:all
+
+npm run report                  # open the last web HTML report
 ```
 
-Tag and project filters work as usual:
+Filters still work inside a runner:
 
 ```bash
-npx playwright test --grep @regression
-npx playwright test --project=chromium-mobile-web
-npx playwright test tests/e2e/inmates.spec.js
+npx playwright test --config runners/playwright.config.js --grep @regression
+wdio run runners/wdio.android.conf.js --suite smoke --spec tests/native/smoke.mobile.test.js
 ```
 
 ## Driving a Flutter web app with Playwright
