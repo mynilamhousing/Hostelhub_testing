@@ -147,23 +147,57 @@ ANDROID_APP_PATH=../Hostelhub/hostelhub/build/app/outputs/flutter-apk/app-releas
 Flutter publishes Semantics labels to the platform accessibility layer, so mobile selectors
 (`~Username`, `~Log in`, `~Inmates`) mirror the web ones.
 
-## Test-case catalogue (manual + automated)
+## Test-case catalogue (308 cases, 960 steps)
 
 ```bash
 npm run testcases
 ```
 
+Source of truth is `scripts/testcases/` — one file per module, one `tc(...)` call per
+case, so the catalogue is code-reviewed like the tests:
+
+```
+scripts/testcases/
+├── _helpers.js            tc() builder + shared preconditions/data
+├── 01-auth.js             AUTH-001…026   login, register, reset, role routing, session
+├── 02-onboarding.js       ONB-001…020    create hostel, rooms, capacity, multi-property
+├── 03-residents.js        RES-001…024    add resident, credentials, room change, billing
+├── 04-rent.js             RENT-001…022   rent plans, pay flow, receipts, expenses, P&L
+├── 05-polls.js            POLL-001…022   create poll, vote, tally, nudge, timezone
+├── 06-chat.js             CHAT-001…014   owner↔resident threads, isolation, XSS
+├── 07-notices.js          NOT-001…010    post, pin, resident view
+├── 08-complaints.js       CMP-001…014    raise, statuses, counters, isolation
+├── 09-visitors-leave.js   VIS-001…014    visitor check-in/out, leave records
+├── 10-deposits-checkout.js DEP-001…016   deposit, deductions, checkout, refund
+├── 11-documents.js        DOC-001…010    upload, edit, delete, isolation
+├── 12-resident-app.js     RAPP-001…022   resident shell, rent, polls, SOS, ratings
+├── 13-ops-misc.js         OPS-001…020    settings, ratings, SOS, upgrade, legal, dashboard
+├── 14-admin.js            ADM-001…010    admin login, global rates, overrides
+├── 15-api-contract.js     API-001…018    health, CORS, auth, types, errors, round-trips
+├── 16-security.js         SEC-001…016    IDOR, isolation, injection, XSS, secrets
+├── 17-web-ui.js           WEB-001…015    breakpoints, overflow, deep links, a11y
+├── 18-e2e.js              E2E-001…015    multi-role journeys from signup to checkout
+└── index.js               module order + ALL_CASES
+```
+
+Each case carries: type (Functional / Negative / Validation / Boundary / Security /
+E2E / API / UI / Compatibility), priority P0–P3 + severity, role, platform,
+preconditions, test data, numbered steps with a matching numbered expected result,
+postconditions, the automation spec (or `Manual`), requirement, notes.
+
 Writes three artefacts to `docs/`:
 
-| File | Use |
+| File | Sheets / use |
 | --- | --- |
-| `HostelHub_TestCases.xlsx` | Summary · Test Cases (steps, expected, data, automation link) · Jira Import |
+| `HostelHub_TestCases.xlsx` | Cover · Summary (per module, priority, type, role, coverage %) · Test Cases (17 columns, filters, frozen panes, priority colour chips) · Step Detail (one row per step) · Traceability · Execution Log (status drop-down) · Jira Import |
 | `jira-import.csv` | Jira → Issues → Import issues from CSV |
 | `TEST-CASES.md` | Readable index for code review |
 
-Jira mapping: `Summary`, `Issue Type`, `Priority`, `Labels`, `Description`, `External issue ID`.
-The external ID is the test-case ID, so re-importing **updates** instead of duplicating.
-`JIRA_ISSUE_TYPE=Task` by default; set `Test` if the project has Xray/Zephyr.
+Jira mapping: `Summary`, `Issue Type`, `Priority`, `Labels`, `Component`, `Epic Link`, `Description`.
+The description carries the ID, preconditions, steps and expected results, so a `Test`
+issue is self-contained.
+
+Current split: **308 cases · 960 steps · 26 automated · 282 manual**, P0 81 / P1 116 / P2 103 / P3 8.
 
 ## Conventions
 
